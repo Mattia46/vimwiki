@@ -2,7 +2,8 @@
 == Javascript ==
 * [[Autocomplete]]
 * [[ng-checkbox]]
-* [[state]]
+* [[State]]
+
 
 == Django ==
 * [[orderBy]]
