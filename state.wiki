@@ -1,0 +1,58 @@
+$state allows to redirect to other page
+It also allows to use create nested page and pass items between view and Ctrls
+
+ - app.js
+{{{javascript
+  angular.module('appName', [])
+    .config(function($stateProvider, ) {
+        $stateProvider
+        .state('firstpage', {
+            url: '/firstpage',
+            templateUrl: 'views/main.html',
+            controller: 'MainController as MainCtrl',
+            access: {
+              requiredLogin: false //Allows to get free access to the page
+            }
+             resolve: {
+                objName: function(restService, appConfig) {
+                  return restService.get(appConfig.restNewWs, 'urlname');
+            }, //This allows to load and inject objects in the Ctrl..
+        })
+        .state('firstpage.nestedpage', {
+            url: 'nestedpage',
+            templateUrl: 'views/main/nestedpage.html',
+            controller: 'NestedPageController as NestedPageCtrl',
+            params: {
+              firstParam: null,
+              secondParam: null
+            }, //Allows to pass objects from the previous Ctrl to this one;
+         })
+    })
+}}}
+
+ - mainCtrl.js
+{{{javascript
+angular.module('appName')
+  .controller('MainController', function($state){
+
+    $state.go('firstpage.nestedpage', {firstParam: theItemToPass, secondParam: theOtherItemToPass});
+  })
+}}}
+
+ - nestedPageCtrl.js
+{{{javascript
+angular.module('appName')
+  .controller('NestedPageController', function($stateParams){
+
+    var item = $stateParams.firstParam;
+    var item2 = $stateParams.secondParam;
+
+ })
+}}}
+
+ - In the main view page remeber to wrap everything in
+{{{HTML
+<div ui-view="">
+  <!--the CODE-->
+</div>
+}}}
