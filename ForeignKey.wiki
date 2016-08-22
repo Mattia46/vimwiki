@@ -1,0 +1,7 @@
+In order to avoid conflicts in the classes import chain:
+{{{python
+field = models.ForeignKey(ClassName)
+  or
+field = models.ForeignKey('filename.ClassToImport')
+}}}
+

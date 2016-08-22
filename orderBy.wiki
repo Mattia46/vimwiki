@@ -1,0 +1,65 @@
+There are two way to order:
+* In the View:
+{{{python
+  class MattiaViewSet(viewsets.ModelViewSet):
+    def get_queryset(self):
+      return Mattia.objects.all().order_by('name')
+  }}}
+
+* In the Model:
+{{{python
+  class Age(models.Model):
+    name = models.ForeignKey(Name)
+    age = models.Integer()
+
+  class Meta:
+    ordering = ('age', )
+  }}}
+
+
+If the class has nested object and you wanna orderBy a field in the nested
+object, there are two options
+
+SCENARIO:
+{{{python
+  class Name(models.Model):
+    username = models.CharField(max_length=10)
+
+
+  class Age(models.Model):
+    name = models.ForeignKey(Name)
+    age = models.Interger()
+  }}}
+
+* View (this would work only in this way and not from NameViewSet)
+{{{python
+  class AgeViewSet(viewsets.ModelViewSet):
+    def get_queryset(self):
+      return Age.objects.all().order_by('name__username')
+  }}}
+
+* In the Model ordering straigth through the field. In this case the class
+nested would follow the ordering already gave in the nested class. For
+reverse nesting (the example above) in the only option:
+
+* Model:
+{{{python
+  class Age(models.Model):
+    name = models.ForeignKey(Name)
+    age = models.Integer()
+
+  class Meta:
+    ordering = ('age', )
+
+  }}}
+
+* View:
+{{{python
+  class NameViewSet(viewsets.ModelViewSet):
+    def get_queryset(self):
+      return Name.objects.all().order_by('username')
+  }}}
+
+In this case, if the NameViewSet serializer shows the Age class nested, this one
+would be automatically order_by('age')
+

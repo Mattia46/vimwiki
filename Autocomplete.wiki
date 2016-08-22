@@ -1,0 +1,66 @@
+//AUTOCOMPLETE PRODUCT
+{{{javascript
+  function createFilterFor(query) {
+    var lowercaseQuery = angular.lowercase(query);
+    return function filterFn(item) {
+      return (item.value.indexOf(lowercaseQuery) !== -1);
+    };
+  }
+
+  function querySearch (query) {
+    var results = query ? newArrayList.filter( createFilterFor(query)  ) : newArrayList, deferred;
+    self.result = results;
+    if (self.simulateQuery) {
+      return deferred.promise;
+    } else {
+      return results;
+    }
+  }
+
+  // This function is mapping every item in the object and assigning it to a var
+  function loadAll() {
+    var allItems = array;
+    return allItems.map( function (item) {
+        item.value = item.name.toLowerCase();
+        return item;
+        });
+  }
+  }}}
+
+Two options to retrieve the array:
+
+* If you already have the array in your scope:
+{{{javascript
+  var newArrayList = loadAll();
+  self.querySearch = querySearch;
+  }}}
+
+* If you want retrieve the array in the DB:
+{{{javascript
+  (function(){
+   self.isLoading = true; // Starts the loading spin in the view
+   restService.get(appConfig.restNewWs, 'url').then(function(item){
+       var array = item;
+       var newArrayList = loadAll();
+       self.querySearch = querySearch;
+       }).finally(function(){
+         self.isLoading = false; // ends the loading sping
+         });
+   })();
+  }}}
+
+{{{html
+  <md-autocomplete
+    tabindex="{{item.index}}"
+    class="search-purchase-first search-location-dialog"
+    md-items="item in ctrl.querySearch(ctrl.searchText)"
+    md-search-text="ctrl.searchText"
+    md-selected-item = 'ctrl.product'
+    placeholder="Search Products"
+    md-item-text='item.name' style="margin: 0;">
+    <md-item-template>
+    <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.name}}</span>
+    </md-item-template>
+    </md-autocomplete>
+
+  }}}

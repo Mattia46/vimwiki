@@ -1,0 +1,32 @@
+{{{html
+  <div ng-repeat='item in controller.items'>
+    <md-checkbox
+    ng-change='controller.function(item)'
+    ng-model='controller.item'
+    ng-checked='controller.isChecked(item, array)'
+    aria-label="Checkbox 1">
+    </md-checkbox>
+    </div>
+  }}}
+  Be careful at ng-model because can mess up the ng-checked
+
+{{{javascript
+
+
+  self.function = function(item){
+    console.log(item);
+  };
+
+  self.isChecked = function(item, array){
+    return array.indexOf(item) > -1;
+  };
+}}}
+
+Se devi comparare un valore all'interno di oggetti nell'array devi prima
+ricreare un array con i soli valori da comparare utilizzando MAP
+
+{{{javascript
+return array.map(function(pr){ return pr.field; }).indexOf(item.id) > -1;
+}}}
+Qst return True or False
+

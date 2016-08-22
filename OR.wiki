@@ -1,0 +1,5 @@
+{{{python
+from django.db.models import Q
+
+Q(field__test='test') | Q(second_field__test='test2')
+}}}

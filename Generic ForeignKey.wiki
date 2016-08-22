@@ -1,0 +1,14 @@
+{{{python
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.fields import GenericRelation
+from Location import ClassName
+
+class ClassName(ModelType):
+    """
+    Generic ProductImage
+    """
+    content_type = models.ForeignKey(ContentType)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey('content_type', 'object_id')
+}}}
