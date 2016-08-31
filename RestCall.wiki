@@ -1,0 +1,9 @@
+Remember to inject $http
+{{{Javascript
+	$http.post('url' + '/secondPard', obj).success(function(data){
+         	    doSomething if success;
+		})
+		.error(function(data){
+		     doSomething else if error;
+	         });
+}}}

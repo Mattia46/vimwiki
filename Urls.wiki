@@ -1,0 +1,14 @@
+{{{python
+from django.conf.urls import include, url
+from appName import views
+from rest_framework import routers
+
+
+router = routers.DefaultRouter(trailing_slash=False) # gestisce / negli Url
+router.register(r'urlpath', views.AppNameViewSet, base_name='urlpath') # usa qst per chiamare il get_queryset(self):
+
+urlpatterns = [
+        url(r'', include(router.urls)),
+        url(r'specific_url_name', views.specific_method_name), # usa qst per chiamare un metodo specifico nella view
+        ]
+}}}

@@ -56,6 +56,7 @@ Two options to retrieve the array:
     md-items="item in ctrl.querySearch(ctrl.searchText)"
     md-search-text="ctrl.searchText"
     md-selected-item = 'ctrl.product'
+    md-selected-item-change='ctrl.methodToRun()'
     placeholder="Search Products"
     md-item-text='item.name' style="margin: 0;">
     <md-item-template>

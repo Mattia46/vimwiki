@@ -1,0 +1,26 @@
+EventService permette di passare info tra due Ctrl ed auto-fire quello di
+destinazione:
+
+Mandante.js
+{{{javascript
+	eventService.broadcast('methodName', object);
+}}}
+
+Ricevente.js
+{{{javascript
+	eventService.on('methodName', function(object){
+            self.array.forEach(function(item){
+                  if(item.id === object.id){
+                        var index = self.array.indexOf(item);
+                        self.array[index] = object;
+			console.log('updated', itemUpdated);
+                        itemExist = true;
+                  }
+            });
+            if(itemExist !== true){
+                  self.array.push(object);
+                  itemExist = false;
+                  console.log('pushed');
+            }
+	});
+}}}

@@ -1,0 +1,20 @@
+If you have two class nested:
+{{{python
+class Order():
+    name = models.CharField(max_length=20)
+    lastname = models.CharField(max_length=20)
+
+
+class OrderItem():
+    order = models.CharField(Order)
+    item = models.CharField(max_length=20)
+
+
+}}}
+If you want to query the nested one from the main one:
+{{{python
+order = Order.objects.filter(orderitem__item='test')
+}}}
+Se vuoi interrogare un oggetto tramite un field nested dalla classe principale,
+la quale NN ha il collegamento, devi partire dal nome della class nested (tutto in minuscolo. es:
+OrderItem => diventa => orderitem__field)
