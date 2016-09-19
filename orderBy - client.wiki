@@ -1,0 +1,25 @@
+{{{javascript
+	//ORDERBY IN THE VIEW
+	$scope.predicate = 'status';
+	self.orderBy = function(predicate){
+		console.log('predicate', predicate);
+		$scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
+		$scope.predicate = predicate;
+	};
+  }}}
+
+{{{html
+
+	<div ng-click="ctrl.orderBy('name')" flex="40" style="margin-left: 8px;">name</div>
+	<div ng-click="ctrl.orderBy('lastname')" flex="40" style="margin-left: 8px;">lastname</div>
+	<div ng-click="ctrl.orderBy('age')" flex="40" style="margin-left:
+	8px;">age</div>
+
+		<div ng-repeat="item in ctrl.item | orderBy:predicate:reverse"></div>
+		<div flex="40">{{ item.name }}</div>
+		<div flex="20">{{ item.lastname }}</div>
+		<div flex="20">{{ item.age }}</div>
+	</div>
+  }}}
+%% Remember this orderBy goes in conflict with the backend orderBy. So one or the
+%% other

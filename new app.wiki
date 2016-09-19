@@ -1,0 +1,6 @@
+{{{python
+./manage startapp appnames
+}}}
+### Remember to add the app in:
+ * ws/setting.py
+ * ws/urls.py

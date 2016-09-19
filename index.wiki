@@ -6,9 +6,12 @@
 * [[eventService]]
 * [[Validation]]
 * [[RestCall]]
+* [[include a View]]
+* [[orderBy - client]]
 
 
 == Django ==
+* [[new app]]
 * [[orderBy]]
 * [[OR]]
 * [[ForeignKey]]

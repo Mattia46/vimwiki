@@ -1,34 +1,34 @@
 {{{HTML
-<form name='formName' novalidate>
-   <md-input-container>
-      <input type='number' name='inputName' ng-required='true' min='0' max='100'>
-      <div ng-show='formName.inputName.$touched || formName.$submitted'>
-      	  <span ng-show='formName.inputName.$invalid'>Field Required</span>
-      </div>
-   </md-input-container>
+	<form name='formName' novalidate>
+		<md-input-container>
+		<input type='number' name='inputName' ng-required='true' min='0' max='100'>
+		<div ng-show='formName.inputName.$touched || formName.$submitted'>
+		<span ng-show='formName.inputName.$invalid'>Field Required</span>
+		</div>
+		</md-input-container>
 
-   <md-autocomplete ng-required='true' md-inout-nama='inputAutocomplete'>
-      <md-item-template>
-      </md-item-template>
-   </md-autocomplete>
-   <div ng-show='formName.$submitted || formName.inputAutocomplete.$touched'>
-       <span ng-show='formName.inputAutocomplete.$invalid'>Field Required</span>
-    </div>
+		<md-autocomplete ng-required='true' md-input-name='inputAutocomplete'>
+		<md-item-template>
+		</md-item-template>
+		</md-autocomplete>
+		<div ng-show='formName.$submitted || formName.inputAutocomplete.$touched'>
+		<span ng-show='formName.inputAutocomplete.$invalid'>Field Required</span>
+		</div>
 
-    <md-input-container>
-       <md-select ng-required='true' name='inputSelect'>
-          <md-option>
-       </md-select>
-       <div ng-show='formName.$submitted || formName.inputSelect.$touched'>
-           <span ng-show='formName.inputSelect.$invalid'>Field Required</span>
-        </div>
-     </md-input-container>
+		<md-input-container>
+		<md-select ng-required='true' name='inputSelect'>
+		<md-option>
+		</md-select>
+		<div ng-show='formName.$submitted || formName.inputSelect.$touched'>
+		<span ng-show='formName.inputSelect.$invalid'>Field Required</span>
+		</div>
+		</md-input-container>
 
-     <md-button type='submit' ng-click='formName.$valid &&
-     ctrl.method()'>Run</md-button>
+		<md-button type='submit' ng-click='formName.$valid &&
+		ctrl.method()'>Run</md-button>
 
-</form>
-}}}
+		</form>
+  }}}
 
 {{{Javascript
 	self.method = function(){
@@ -36,12 +36,21 @@
 	};
 
 	self.reset = function(){
-	    cleanField();
-	    $scope.formName.$setPristine();
-	    $scope.formName.$setUntouched();
-	    // Resetta i valori campi. Se
-	    // lanciato nella funzione 'method' non funziona perche conflitta con
-	    // $submitted visto che $digest girando piu volte non mi permette di
-	    // resettare con setPristine
+		cleanField();
+		$scope.formName.$setPristine();
+		$scope.formName.$setUntouched();
+		// Resetta i valori campi. Se
+		// lanciato nella funzione 'method' non funziona perche conflitta con
+		// $submitted visto che $digest girando piu volte non mi permette di
+		// resettare con setPristine
 	}
-}}}
+  }}}
+
+For ng-repeat you can also you $index:
+{{{html
+	<input ng-required="true" type='number' name="name_{{$index}}">
+		<div ng-show="formName['name_' + $index].$touched || formName.$submitted">
+			<span ng-show="formName['name_' + $index].$invalid">Field Required</span>
+		</div>
+	</input>
+  }}}

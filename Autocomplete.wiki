@@ -1,12 +1,25 @@
 //AUTOCOMPLETE PRODUCT
 {{{javascript
-  function createFilterFor(query) {
-    var lowercaseQuery = angular.lowercase(query);
-    return function filterFn(item) {
-      return (item.value.indexOf(lowercaseQuery) !== -1);
-    };
-  }
+function createFilterFor(query) {
+	var lowercaseQuery = angular.lowercase(query);
+	return function filterFn(item) {
+	// this method allows me to filter using more than one word (in this
+	//case 3 word, but could be more)
+		var words = lowercaseQuery.split(' ');
+		var word1 = lowercaseQuery.split(' ')[0];
+		if(words.length > 2){
+			var word2 = lowercaseQuery.split(' ')[1];
+			var word3 = lowercaseQuery.split(' ')[2];
+			return (item.value.indexOf(word1) !== -1) && (item.value.indexOf(word2) !== -1) && (item.value.indexOf(word3) !== -1);
+		} else if(words.length > 1){
+			var word2 = lowercaseQuery.split(' ')[1];
+			return (item.value.indexOf(word1) !== -1) && (item.value.indexOf(word2) !== -1);
+		} else {
+			return (item.value.indexOf(word1) !== -1);
+		}
 
+	};
+}
   function querySearch (query) {
     var results = query ? newArrayList.filter( createFilterFor(query)  ) : newArrayList, deferred;
     self.result = results;
@@ -65,3 +78,5 @@ Two options to retrieve the array:
     </md-autocomplete>
 
   }}}
+  %% DEBUG: make sure the md-items='item in ctrl.querySearch(ctrl.searchText)' is
+  %% in the same line, without indentation

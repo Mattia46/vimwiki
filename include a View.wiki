@@ -1,0 +1,6 @@
+%%Nella pagina principale creare un div ed includere la pagina voluta
+{{{HTML
+	<div>
+		<div ng-include src="'views/linked-page.html'"></div>
+	</div>
+  }}}
