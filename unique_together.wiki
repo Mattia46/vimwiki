@@ -1,0 +1,38 @@
+unique_together prevent to create an object that already exist:
+
+In the Model anfter the class Obj and def __str__:
+{{{python
+class Obj:
+	first_attr =
+	second_attr =
+	third_attr =
+
+	def __str__(self):
+		return self.first_attr
+
+	class Meta:
+		unique_together = ('first_attr', 'second_attr', 'third_attr'...)
+}}}
+
+If you want override this validation, in the serializer you have to:
+{{{python
+class ObjSerializer(serializers.ModelSerializer):
+
+	class Meta:
+		model = Obj
+		fileds = ('id', 'first_attr', 'second_attr', 'third_attr')
+		validators = []
+
+	def create(self, validated_data):
+		first = validated_data.get('first', None)
+		second = validated_data.get('second', None)
+
+		try:
+			do want you want if the error is not catched (so no unique_together)
+		except IntegrityError:
+			do you want if the error is cathed
+		except Exception as e:
+			print(e)
+
+		return blabla
+	}}}

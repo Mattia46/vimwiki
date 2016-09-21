@@ -1,0 +1,31 @@
+Create a view who calls a method:
+
+Urls.py
+{{{python
+urlpatterns = [
+            url(r'', include(router.urls)),
+            url(r'urlname', views.methodNameInTheView),
+        ]
+}}}
+
+Views.py
+{{{python
+
+# Import these to send back a specific response
+from django.http import HttpResponse
+from django.contrib.contenttypes.models import ContentType
+
+# Import these in order to change the obj from dict to Json
+from rest_framework.decorators import api_view, permission_classes
+import json
+
+# IsAuthenticated reduce the call from 3 to only 1
+@permission_classes(( IsAuthenticated , ))
+def methodNameInTheView(request):
+
+    appname = ContentType.objects.get(model='Appname', app_label='appnames')
+    appname2 = ...
+    appname3 = ...
+    jsontoreturn = [{'name': appname.name, 'id': appname.id},{}, {}]
+    return HttpResponse(json.dumps(arr), content_type='application/json')
+}}}

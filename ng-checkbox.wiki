@@ -1,14 +1,14 @@
 {{{html
   <div ng-repeat='item in controller.items'>
     <md-checkbox
-    ng-change='controller.function(item)'
+    ng-click='controller.function(item)'
     ng-model='controller.item'
     ng-checked='controller.isChecked(item, array)'
     aria-label="Checkbox 1">
     </md-checkbox>
     </div>
   }}}
-  Be careful at ng-model because can mess up the ng-checked
+  Use ng-click instead of ng-change. Much better
 
 {{{javascript
 

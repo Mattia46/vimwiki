@@ -1,0 +1,21 @@
+ULR: https://github.com/indrimuska/angular-moment-picke://github.com/indrimuska/angular-moment-picker
+
+{{{shell
+$ bower install moment-picker
+}}}
+
+{{{javascript
+
+var appName = angular.module('appName', ['moment-picker']);
+}}}
+
+{{{html
+
+<link rel="stylesheet" href="bower_components/moment-picker/dist/angular-moment-picker.min.css" />
+<script src="bower_components/moment/moment.js"></script>
+<script src="bower_components/moment-picker/dist/angular-moment-picker.min.js"></script>
+
+<div moment-picker="ctrl.itemName" today='true' change='ctrl.function()' format="DD/MM/YYYY HH:mm A">
+  {{ ctrl.itemName || "placeholder" }}.
+</div>
+}}}
