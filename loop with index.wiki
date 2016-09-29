@@ -1,0 +1,5 @@
+To loop and get the index of an array:
+{{{python
+    for index, i in enumerate(arr):
+        print(arr[index])
+}}}

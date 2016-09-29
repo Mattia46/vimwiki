@@ -21,3 +21,4 @@
 * [[Nested class]]
 * [[unique_together]]
 * [[getApp info - Jsononizzare a response]]
+* [[loop with index]]
