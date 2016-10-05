@@ -1,8 +1,8 @@
 {{{html
-  <div ng-repeat='item in controller.items'>
+  <div ng-repeat='item in controller.items'> or <div ng-repeat='(key, item) in controller.item'>
     <md-checkbox
     ng-click='controller.function(item)'
-    ng-model='controller.item'
+    ng-model='controller.item' || ng-model='controller.item(key)'
     ng-checked='controller.isChecked(item, array)'
     aria-label="Checkbox 1">
     </md-checkbox>

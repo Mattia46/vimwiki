@@ -9,6 +9,7 @@
 * [[include a View]]
 * [[orderBy - client]]
 * [[moment-picker]]
+* [[mdBottomSheet]]
 
 
 == Django ==

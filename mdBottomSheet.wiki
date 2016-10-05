@@ -1,0 +1,28 @@
+mdBottomSheet work even with mdDialog if the z-index has changed because:
+- $mdDialog has: z-index = 80;
+- $mdBottomSheet has: z-index = 70;
+
+so in css:
+{{{html
+	md-bottom-sheet {
+		z-index: 81;
+	}
+}}}
+{{{javascript
+angular.module('appName', ['ngMaterial'])
+	.controller('appCtrl', function($mdBottomSheet){
+
+			self.showBottomSheet = function(){
+				$mdBottomSheet.show({
+					templateUrl: '/url/bottomsheet.html'.
+					controller: 'newController as newCtrl',
+				})
+			}
+})
+}}}
+{{{html
+<md-bottom-sheet>
+	<div>blabla</div>
+	<div>bla2bla2</div>
+</md-bottom-sheet>
+}}}
