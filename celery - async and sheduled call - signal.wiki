@@ -1,0 +1,45 @@
+With celery async call allows you to receive back the object while the backend
+keep doing other login
+
+appName/tasks.py
+{{{python
+from celery.decorators import task
+from app.models import AppModel
+
+@task(name='method_name')
+def method_name(instance): # se non passo niente non serve passare instance
+	print('ciao', instance)
+}}}
+
+appName/signals.py | oppure in qualsiasi altro file
+{{{python
+from django.db.models.signals import post_save, post_delete
+from django.dispatch import receiver
+from app.models import AppModel
+from app.tasks import method_name # il methodo da importare dal task file
+
+@receiver(post_save, sender=AppInstance) # esempio di AppInstance = GoodsIns,
+# quindi ogni volta che salvo un instance di GoodsIn il receiver runs
+def other_method_name(sender, instance, **kwargs):
+	method_name() # chiamata normale
+	oppure
+	method_name.delay() # chiamata async. Non blocca il respond della
+	# chiamata principale, ma continua in background
+}}}
+
+debugging (remember to be in python3 env)
+$ ./manage.py celery worker --loglevel=info
+
+SHEDULE TASKS
+appName/settings.py
+{{{python
+CRONJOBS = [
+    ('00 7 * * *', 'appName.tasks.method_name'),
+]
+
+# prevents duplicate jobs running
+CRONTAB_LOCK_JOBS = True
+# APPENV = 'bla'
+
+CRONTAB_COMMAND_PREFIX = 'APP_SETTINGS_ENV={}'.format(APPENV)
+}}}

@@ -23,3 +23,5 @@
 * [[unique_together]]
 * [[getApp info - Jsononizzare a response]]
 * [[loop with index]]
+* [[celery - async and sheduled call - signal]]
+* [[celery setting]]

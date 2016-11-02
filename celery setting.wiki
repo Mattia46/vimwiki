@@ -1,0 +1,51 @@
+Remember to set REDIS as well
+
+appName/celery.py
+{{{python
+from __future__ import absolute_import
+
+import os
+
+from celery import Celery
+
+# set the default Django settings module for the 'celery' program.
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'appName.settings')
+
+from django.conf import settings  # noqa
+
+app = Celery('appName')
+
+# Using a string here means the worker will not have to
+# pickle the object when using Windows.
+app.config_from_object('django.conf:settings')
+app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
+
+
+# to work with django-celery
+app.conf.update(
+    CELERY_RESULT_BACKEND='djcelery.backends.database:DatabaseBackend',
+    CELERYBEAT_SCHEDULER='djcelery.schedulers.DatabaseScheduler'
+)
+
+
+@app.task(bind=True)
+def debug_task(self):
+    print('Request: {0!r}'.format(self.request))
+}}}
+
+
+appName/settings.py
+{{{python
+INSTALLED_APPS = [
+	'djcelery',
+]
+# celery
+# http://docs.celeryproject.org/en/latest/getting-started/brokers/redis.html#broker-redis
+BROKER_URL = 'redis://localhost:6379/0'
+# BROKER_URL = 'django://'
+BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}  # 1 hour.
+# if you want to store the state
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+
+
+}}}
