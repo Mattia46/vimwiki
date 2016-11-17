@@ -1,0 +1,4 @@
+ssh root@ws2-backend-dev.natoora.co.uk
+psw: 1234567890
+root@ws3-backend-dev: cd /var/log/apache2
+root@ws2-backend-dev: tail -f *

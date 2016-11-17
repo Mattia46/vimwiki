@@ -1,0 +1,19 @@
+CREATE REACT APPS
+{{{shell
+$ npm install -g create-react-app
+$ create-react-app my-app-name
+}}}
+This creates the app scaffold.
+
+Install babel dependencies:
+{{{shell
+npm install --save-dev babel-preset-es2015
+npm install --save-dev babel-preset-react
+}}}
+
+Then create the .babelrc file and add the dependencies installed
+{{{shell
+$ touch .babelrc
+$ echo '{ "presets": ["react"]  }' > .babelrc
+}}}
+The open the file and append "es2015"
