@@ -1,0 +1,13 @@
+Object assign allows you to create and modify an object creating a copy of it,
+so leaving the original one intact
+{{{Javascript
+var obj = {a: 1}
+var obj2 = Object.assign({}, obj)
+}}}
+
+I can also manipulate the main object in the copied one
+{{{Javascript
+var obj = {a:1}
+var obj2 = ({}, obj, {b: 'ciao'})
+console.log(obj2) => {a: 1, b: 'ciao'}
+}}}

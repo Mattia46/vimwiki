@@ -1,0 +1,6 @@
+creates a .jshintrc file in the home folder and type in:
+{{{js
+				{
+					"esversion: 6"
+				}
+}}}

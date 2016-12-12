@@ -10,9 +10,11 @@
 * [[orderBy - client]]
 * [[moment-picker]]
 * [[mdBottomSheet]]
+*[[ Object assign ]]
 
 == ReactJS ==
 * [[ Setup ]]
+* [[ Tips ]]
 
 
 == Django ==
@@ -31,3 +33,4 @@
 
 == Natoora Conf ==
 * [[ws dev-qe server terminal]]
+* [[es6 warning ]]
