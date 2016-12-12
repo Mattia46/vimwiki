@@ -59,9 +59,9 @@ class Main extends React.Component {
   render(){
     return (
       <Parent>
-        <button>Ciao Matti</button>
-        <button>Ciao Mau</button>
-        <button>Ciao Mauro</button>
+        <button value='A'>Ciao Matti</button> Line 25 passo il value quindi 'A'. Se passassi children passerei 'Ciao Matti'
+        <button value='B'>Ciao Mau</button>
+        <button value='C'>Ciao Mauro</button>
         </Parent>
     )
   }
@@ -84,7 +84,7 @@ class Parent extends React.Component {
     console.log('childrem', this.props.children)
     let fn = child =>
       React.cloneElement(child, {
-        onClick:this.change.bind(this, child.props.value)
+        onClick:this.change.bind(this, child.props.value) // oppure posso passare come arg child.props.children (quindi il contenuto tra i <button>)
       });
     let child = React.Children.map(this.props.children, fn)
     return(
