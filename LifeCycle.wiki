@@ -1,0 +1,60 @@
+%% Life cycle allows me to interveer in the different stage of the render.
+%% The AppCycle Componet just show the basic functionality
+{{{Javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+class AppCycle extends React.Component {
+  constructor(){
+    super();
+    this.state = { val: 0 };
+    // in queste circostanze e' fondamentale binding the update method nel constructor invece the nel render, altrimenti non funziona
+    this.update = this.update.bind(this);
+  }
+  update(){
+    this.setState({val: this.state.val + 1 })
+  }
+  componentWillMount(){
+    this.setState({m: 2})
+  }
+  render(){
+    console.log('rendering!')
+    return (
+      <button onClick={this.update}>
+        {this.state.val * this.state.m}
+      </button>)
+  }
+  componentDidMount(){
+    this.intervallo = setInterval(this.update,500)
+  }
+  componentWillUnmount(){
+    clearInterval(this.intervallo)
+  }
+}
+
+// I can also interact with a Component LifeCycle from an other Component, in this case Wrapper manipulate AppCycle LifeCycle
+// I only have to use ReactDOM to interact with AppCycle LifeCycle from here and render it in the Wrapper return, inside a
+// specific div where a render it.
+ 
+export class Wrapper extends React.Component {
+  constructor(){
+    super();
+  }
+  mount(){
+    ReactDOM.render(<AppCycle />, document.getElementById('a'))
+  }
+  unmount(){
+    ReactDOM.unmountComponentAtNode(document.getElementById('a'))
+  }
+  render(){
+    return (
+        <div>
+          <button onClick={this.mount.bind(this)}>Mount</button>
+          <button onClick={this.unmount.bind(this)}>Unmount</button>
+          <div id="a"></div>
+        </div>
+    )
+  }
+}
+
+}}}

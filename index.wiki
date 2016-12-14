@@ -13,8 +13,17 @@
 *[[ Object assign ]]
 
 == ReactJS ==
-* [[ Setup ]]
 * [[ Tips ]]
+* [[Setup]]
+* [[setState]]
+* [[Nested data: props.children]]
+* [[Validate]]
+* [[Get refs from a Component]]
+* [[Synthetic Event]]
+* [[LifeCycle]]
+* [[Component Life Cycle]]
+* [[Map Filter Fetch]]
+* [[Children]]
 
 
 == Django ==

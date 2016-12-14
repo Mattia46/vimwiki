@@ -1,0 +1,41 @@
+%% In this example I am updating the Component itself through update method
+%% Everytime that I am updating I re-Render the component, imcrementing the this.props.val + 1 and compating
+%% the prevProps to the previous Preps. When this are different che this.state.increacing change to true
+%% N.B. At the bottom I decleare the "defaultProps val to 0"
+
+{{{Javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+
+export class ComponentUpdateCycle extends React.Component {
+  constructor(){
+    super();
+    this.state = {increasing: false}
+  }
+  update(){
+    ReactDOM.render(
+      <ComponentUpdateCycle val={this.props.val + 1} />,
+      document.getElementById('validation'))
+  }
+  componentWillReceiveProps(nextProps){
+    this.setState({increasing: nextProps.val > this.props.val})
+  }
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextProps.val % 5 === 0;
+  }
+  render(){
+    console.log(this.state.increasing)
+    return (
+      <button onClick={this.update.bind(this)}>
+        {this.props.val}
+      </button>
+    )
+  }
+  componentDidUpdate(prevProps, prevState) {
+    console.log(`preProps: ${prevProps.val}`)
+  }
+}
+
+ComponentUpdateCycle.defaultProps = {val: 0}
+}}}

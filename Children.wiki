@@ -1,0 +1,100 @@
+Four ways to itereray (loopare) the array passed as a children (In between <Parent>)
+Map works only if more than 1 item in the array
+Map with React.Children works even if 1 item in the array
+ToArray works always
+Only works opposito to map. Works only if 1 item in the array
+ForEach works like map
+
+{{{Javascript
+import React from 'react';
+
+class Children extends React.Component {
+  render(){
+    return(
+      <Parent>
+        <div>dd</div>
+        </Parent>
+    )
+  }
+}
+
+class Parent extends React.Component {
+  //render(){
+    //console.log('main', this.props.children)
+    //let items = this.props.children.map(child => child)
+    //console.log('childre', items) 
+    //return null
+  //}
+  //render(){
+    //console.log('main', this.props.children)
+    //let items = React.Children.map(this.props.children, child => child)
+    //return null
+  //}
+  //render(){
+    //let items = React.Children.toArray(this.props.children)
+    //console.log(items)
+    //return null
+  //}
+  render(){
+    let items = React.Children.only(this.props.children)
+    console.log(items)
+    return null
+  }
+  //render(){
+    //let items = React.Children.forEach(this.props.children, child => console.log(child))
+  //}
+}
+
+
+export default Children
+}}}
+
+In this second example React.cloneElement allowed us to manipulate the children, because when the come through the
+render we receive them as a rapresentation not the real obj, so we have to clone them in order to manipulate.
+
+{{{Javascript
+import React from 'react';
+
+class Main extends React.Component {
+  render(){
+    return (
+      <Parent>
+        <button value='A'>Ciao Matti</button> Line 25 passo il value quindi 'A'. Se passassi children passerei 'Ciao Matti'
+        <button value='B'>Ciao Mau</button>
+        <button value='C'>Ciao Mauro</button>
+        </Parent>
+    )
+  }
+}
+
+class Parent extends React.Component {
+  constructor(){
+    super()
+    this.state = {
+      child: 'nessuno'
+    }
+  }
+
+  change(child){
+    console.log('cc', child)
+    this.setState({child})
+  }
+
+  render(){
+    console.log('childrem', this.props.children)
+    let fn = child =>
+      React.cloneElement(child, {
+        onClick:this.change.bind(this, child.props.value) // oppure posso passare come arg child.props.children (quindi il contenuto tra i <button>)
+      });
+    let child = React.Children.map(this.props.children, fn)
+    return(
+      <div>
+        <h2> { this.state.child } </h2>
+        <h3>{child}</h3>
+        </div>
+
+    )
+  }
+}
+
+export default Main
