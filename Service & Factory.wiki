@@ -1,0 +1,65 @@
+Services
+Syntax: module.service( 'serviceName', function ); 
+Result: When declaring serviceName as an injectable argument you will be provided with an instance of the function. In other words new FunctionYouPassedToService().
+
+Factories
+Syntax: module.factory( 'factoryName', function ); 
+Result: When declaring factoryName as an injectable argument you will be provided with the value that is returned by invoking the function reference passed to module.factory.
+
+Providers
+Syntax: module.provider( 'providerName', function ); 
+Result: When declaring providerName as an injectable argument you will be provided with (new ProviderFunction()).$get(). The constructor function is instantiated before the $get method is called - ProviderFunction is the function reference passed to module.provider.
+Providers have the advantage that they can be configured during the module configuration phase.
+
+APP & CONTROLLER
+{{{Javascript
+var toDoApp = angular.module('toDoApp')
+  .controller('toDoCtrl', function(ToDoService, ToDoFactory){
+
+
+      })
+}}}
+SERVICE
+{{{Javascript
+toDoApp.service('ToDoService', ['$http', 'ToDoFactory', function($http, ToDoFactory) {
+  var self = this;
+
+  self.getAll = function() {
+    var todos = [];
+    _fetchTodosFromApi(todos);
+    return todos;
+  };
+
+  // Why have we not set this private function to self?
+  function _fetchTodosFromApi(todos) {
+    $http.get('http://quiet-beach-24792.herokuapp.com/todos.json')
+      .then(function(response) {
+        _handleResponseFromApi(response.data, todos)
+      }, function(err) {});
+  };
+
+  function _handleResponseFromApi (data, todos) {
+    data.forEach(function(toDoData){
+      todos.push(new ToDoFactory(toDoData.text, toDoData.completed));
+    });
+  }
+}]);
+}}}
+
+FACTORY
+{{{Javascript
+toDoApp.factory('ToDoFactory', function() {
+  Todo = function(todoText, completed){
+    this.text = todoText;
+    this.completed = (typeof completed !== 'undefined') ? completed : false;
+  };
+
+  // we attach a new method to the Todo prototype
+  // just like we did Thermostat
+  Todo.prototype.complete = function() {
+    this.completed = true;
+  };
+
+  return Todo;
+});
+}}}

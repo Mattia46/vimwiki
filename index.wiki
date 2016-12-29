@@ -11,9 +11,11 @@
 * [[moment-picker]]
 * [[mdBottomSheet]]
 *[[ Object assign ]]
+* [[Switch]]
+* [[Service & Factory]]
 
 == ReactJS ==
-* [[ Tips ]]
+* [[Tips ]]
 * [[Setup]]
 * [[setState]]
 * [[Nested data: props.children]]
@@ -24,6 +26,10 @@
 * [[Component Life Cycle]]
 * [[Map Filter Fetch]]
 * [[Children]]
+* [[Router]]
+
+== Immutable ==
+* [[Modifiy Immutable]]
 
 
 == Django ==
