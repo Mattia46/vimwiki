@@ -13,6 +13,7 @@
 *[[ Object assign ]]
 * [[Switch]]
 * [[Service & Factory]]
+* [[Toast]]
 
 == ReactJS ==
 * [[Tips ]]
