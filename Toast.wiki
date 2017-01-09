@@ -1,0 +1,16 @@
+{{{Javascript
+  toast('error', 'message to output')
+  toast('success', 'message to output')
+
+var toast = function(type, msg){
+  var pinTo = 'top right';
+  $mdToast.show(
+      $mdToast.simple()
+      .textContent(msg)
+      .position(pinTo)
+      .hideDelay(3000)
+      .theme(type)
+      );
+};
+
+}}}

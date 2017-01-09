@@ -10,8 +10,13 @@
 * [[orderBy - client]]
 * [[moment-picker]]
 * [[mdBottomSheet]]
+*[[ Object assign ]]
+* [[Switch]]
+* [[Service & Factory]]
+* [[Toast]]
 
 == ReactJS ==
+* [[Tips ]]
 * [[Setup]]
 * [[setState]]
 * [[Nested data: props.children]]
@@ -22,6 +27,10 @@
 * [[Component Life Cycle]]
 * [[Map Filter Fetch]]
 * [[Children]]
+* [[Router]]
+
+== Immutable ==
+* [[Modifiy Immutable]]
 
 == Redux ==
 * [[Reducer, dispatch, subscribe]]
@@ -44,3 +53,4 @@
 
 == Natoora Conf ==
 * [[ws dev-qe server terminal]]
+* [[es6 warning ]]

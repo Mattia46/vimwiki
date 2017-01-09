@@ -1,0 +1,67 @@
+%%Router manager the different paths. Route path='/' contain as a children the other 2 path: repos and about.
+%%In order to display the children, in the App component I am display the Links to the path and {this.props.children}
+%%where I am showing the actual children Component
+%%The NavLink is a wrapper in order to add activeClassName etc to every Link. It is not necessary unless I want add
+%%something to every path Link adding it only once in the wrapper (NavLink);
+
+{{{Javascript
+// index.js
+import React from 'react'
+import { render  } from 'react-dom'
+import { Router, Route, hashHistory  } from 'react-router'
+import App from './modules/App'
+import About from './modules/About'
+import Repos from './modules/Repos'
+
+ReactDOM.render((
+      <Router history={hashHistory}>
+        <Route path="/" component={App}>
+          <Route path="/repos" component={Repos}/>
+          <Route path="/about" component={About}/>
+        </Route>
+      </Router>
+      ), document.getElementById('app')
+)
+
+// App.jsx
+class App expands React.Component {
+  render(){
+    render(
+        <div>
+          <h1>React Router Tutorial</h1>
+          <ul role="nav">
+            <li><NavLink to="/about">About</NavLink></li>
+            <li><NavLink to="/repos">Repos</NavLink></li>
+          </ul>
+          {this.props.children}
+        </div>
+        )
+    }
+}
+
+// NavLink.jsx
+class NavLink expands React.Component {
+  render() {
+    return <Link {...this.props} activeClassName="active"/>
+  }
+}
+
+// About.jsx
+class About expands React.Component {
+  render(){
+    return(
+      <div>About</div>
+      )
+  }
+}
+
+
+// Repos.jsx
+class Repos expands React.Component {
+  render(){
+    return(
+      <div>Repos</div>
+      )
+  }
+}
+}}}

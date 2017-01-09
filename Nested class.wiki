@@ -1,20 +1,68 @@
 If you have two class nested:
 {{{python
-class Order():
-    name = models.CharField(max_length=20)
-    lastname = models.CharField(max_length=20)
+    class Order():
+        name = models.CharField(max_length=20)
+        lastname = models.CharField(max_length=20)
 
 
-class OrderItem():
-    order = models.ForeignKey(Order)
-    item = models.CharField(max_length=20)
+        class OrderItem():
+            order = models.ForeignKey(Order)
+            item = models.CharField(max_length=20)
 
 
-}}}
+  }}}
 If you want to query the nested one from the main one:
 {{{python
-order = Order.objects.filter(orderitem__item='test')
-}}}
+    order = Order.objects.filter(orderitem__item='test')
+  }}}
 Se vuoi interrogare un oggetto tramite un field nested dalla classe principale,
 la quale NN ha il collegamento, devi partire dal nome della class nested (tutto in minuscolo. es:
 OrderItem => diventa => orderitem__field)
+
+NEL SERIALIZER:
+Parent class and Its children:
+
+    If Parents has a children foreing key in its own object you can nested the children serializer just calling it
+    If hasn't oyu have to use childrename_set. ES:
+
+SENARIO WHERE YOU NEED Children_set because the parent doens't have the children in his field
+{{{Python
+class Parent():
+    name = models.CharField(max_length=100)
+    age = mode  .IntegerField()
+
+class Children():
+    lastname = models.CharFields(max_length=40)
+    parent = models.ForeignKey(Parent)
+
+class ChildrenSerializer(serializers.ModelsSerializer):
+    class Meta:
+        fields = ('lastname')
+
+class ParentSerializer(serializers.ModelSerializer):
+    children_set = ChildrenSerializer(many=True, read_only=True)
+
+class Meta:
+    fields = ('name', 'age', 'children_set')
+}}}
+
+SENARIO WHERE YOU DON'T NEED Children_set because the parent has the children in his field
+{{{Python
+class Parent():
+    name = models.CharField(max_length=100)
+    age = mode  .IntegerField()
+    children = model.ForeingKet(Children)
+
+class Children():
+    lastname = models.CharFields(max_length=40)
+
+class ChildrenSerializer(serializers.ModelsSerializer):
+    class Meta:
+        fields = ('lastname')
+
+class ParentSerializer(serializers.ModelSerializer):
+    children = ChildrenSerializer(many=True, read_only=True)
+
+class Meta:
+    fields = ('name', 'age', 'children')
+

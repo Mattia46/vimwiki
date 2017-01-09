@@ -1,0 +1,12 @@
+When re-render a component, react assumes that has to re-render it because
+the following method is called.
+If we don't want re-render the component we need to return false instead of true,
+If we don't render a Component, React won't re-render the nested component as
+well.
+{{{Javascript
+shouldComponentUpdate(nextProps, nextState) {
+  return true;
+}
+}}}
+You can achieve the same result of return false by using React.PureComponent
+instead of React.Component when declair the component

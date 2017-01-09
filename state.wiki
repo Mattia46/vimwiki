@@ -1,5 +1,5 @@
 $state allows to redirect to other page
-It also allows to use create nested page and pass items between view and Ctrls
+you can pass obj as a param only between nested pages and NOT within not nested pages
 
  - app.js
 {{{javascript

@@ -1,9 +1,45 @@
-Remember to inject $http
+Controller
 {{{Javascript
-	$http.post('url' + '/secondPard', obj).success(function(data){
-         	    doSomething if success;
-		})
-		.error(function(data){
-		     doSomething else if error;
-	         });
+  productService.addProductBase(data).then(function(data){
+    console.log('success', data.data);
+  }).catch(function(data){
+    console.log('error', data.data)
+  })
 }}}
+
+Factory 
+{{{Javascript
+'use strict';
+
+angular.module('Appname')
+.factory('productService', function($http, appConfig){
+
+	return {
+		addProductBase: function(product){
+			return $http ({
+				method: 'POST',
+				url: appConfig.restNewWs + '/productbaseapp',
+				data: product
+			});
+		},
+		updateProductBase: function(product){
+			return $http ({
+				method: 'PUT',
+				url: appConfig.restNewWs + '/productsbase/' + product.id,
+				data: product
+			});
+		},
+		removeProductBase: function(product){
+			return $http ({
+				method: 'DELETE',
+				url: appConfig.restNewWs + '/productsbase/' + product.id,
+			});
+		},
+		getProduct: function(){
+			return $http ({
+				method: 'GET',
+				url: appConfig.restNewWs + '/productlightlist',
+			});
+		},
+}
+}

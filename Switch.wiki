@@ -1,0 +1,23 @@
+md-switch
+If the element that you bind in the ng-model is a true/false you don't need to add ng-true/false-value.
+If the ng-model doens't use a true/false but other value you have to use ng-false/true-value.
+The ng-false/true-value change the value itself, so you DON'T need to change the object value in the controller
+
+{{{Javascript
+  <div ng-repeat='run in runListCtrl.runs track by $index'>
+    <div layout='row' layout-align='center center'>
+    <div flex="20">{{ run.name }}</div>
+    <div flex="20">{{ run.sequence }}</div>
+    <md-switch ng-model='run.status' ng-false-value="'CLOSED'" ng-true-value="'OPEN'" ng-change='runListCtrl.update(run)' flex="20">{{run.status}} </md-switch>
+    </div>
+    </div>
+  }}}
+{{{Javascript
+  self.update = function(run){
+    //run.status = run.status == 'OPEN' ? 'CLOSED' : 'OPEN';
+    runsService.updaterun(run).then(function(data){
+        console.log('data', data.data);
+        })
+    return run.status
+  };
+}}}
