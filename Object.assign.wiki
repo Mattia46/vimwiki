@@ -1,0 +1,16 @@
+In order to create an object clone I can use Object.assign
+
+{{{Javascript
+class todo extends Component {
+  constructor(){
+    super()
+    this.state = { todo: {completed: false} }
+  }
+}
+
+const toggleTodo = (todo) => {
+  return {
+    Object.assign ({}, todo, {completed: !todo.completed})
+  };
+};
+}}}

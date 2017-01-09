@@ -1,0 +1,52 @@
+Redux is a pure fuction who changes the state.
+Reducers a PURE function who gets the previous state, modify it and return the new state (prativamente e' il method)
+Dispatch runs the reducer usually passing the state to modify and the action
+Subscribe re-render the page, showing the new state in the view
+
+* Pure function are the one who change only the param/s passed into the function, so doesn't modify any objects but
+  creates and return a new one
+
+
+{{{Javascript
+//REDUCER
+const counter = (state = 0, action) => {
+  switch (action.type){
+    case 'INCREMENT':
+      console.log('inc', state)
+      return state + 1;
+    case 'DECREMENT':
+      return state - 1;
+    default:
+      return state
+  }
+}
+
+// Importing Redux and assign to it the reducer
+const { createStore } = Redux;
+const store = createStore(counter);
+
+// DOM
+const Counter = ({value, increment, decrement}) => (
+  <div>
+    <h1>{ value }</h1>
+    <button onClick={increment}>+</button>
+    <button onClick={decrement}>-</button>
+
+  </div>
+  )
+
+// Render method with dispatches insiede with relative action to take in the reducer ('INCREMENT', 'DECREMENT')
+render = () => {
+    ReactDOM.render(
+      <Counter
+        value={store.getState()}
+        increment = {() => store.dispatch({type: 'INCREMENT'}) }
+        decrement = {() => store.dispatch({type: 'DECREMENT'}) }
+        />,
+      document.getElementById('root')
+    )
+}
+
+// Subscriber is in charge to apply the state changes to the DOM, re-rendergin the page through the 'render' method
+store.subscribe(render);
+render();}}}

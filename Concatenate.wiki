@@ -1,0 +1,45 @@
+Concatenate APPENDS a new object to the array, giving back a NEW array instead of modifying the oxisting one. Need to
+use PURE FUNCTION
+
+{{{Javascript
+  const counter = (list) => {
+    return [...list, 0]; // ES6
+    return list.concat([0]) // ES5
+  }
+}}}
+Es of adding, removing and incrementing WITHOUT MUTATING the obj, but creating a NEW one
+{{{Javascript
+const addCounter = (list) => {
+  return [...list, 0]; // ES6
+    return list.concat([0]) // ES5
+};
+
+// The non-mutating method are creating a new array, getting the objs until the index one first, and then form the index
+// till the end concatenating them
+const removeCounter = (list, index) => {
+  // ES6
+  return [
+    ...list.slice(0, index), // i tre puntini sono chiamati SPREAD
+    ...list.slice(index + 1)
+  ];
+
+  // ES5
+  return list
+    .list.slice(0, index)
+    .list.concat(list.slice(index + 1))
+
+  // ES5 Mutating:
+  list.splice(index, 1);
+  return list;
+};
+
+
+const incrementCounter = (list, index) => {
+  return [
+    ...list.slice(0, index),
+    list[index] + 1,
+    ...list.slice(index + 1)
+  ];
+};
+
+}}}
