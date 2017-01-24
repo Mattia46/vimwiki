@@ -1,0 +1,27 @@
+{{{Javascript
+  class App extends Component {
+
+    methodName(a, b){
+      return a + b
+    };
+
+    render(){
+      return(
+          <div>ciao</div>
+      )
+    }
+  }
+  }}}
+
+{{{Javascript
+  import ReactTestUtils from 'react-addons-test-utils';
+  import React from 'react';
+  import expect from 'expect';
+
+  it('should run the method', () => {
+      let view = ReactTestUtils.renderIntoDocument(<App />);
+      let result = view.methodName(3, 5);
+      expect(result).toBe(8)
+      })
+  }}}
+

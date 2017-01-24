@@ -1,0 +1,47 @@
+{{{Javascript
+import React from 'react';
+import expect from 'expect';
+import { shallow, mount } from 'enzyme';
+
+const app = shallow(<Test name='first props'/>)
+
+it('should has a component', () => {
+  expect(app.exists()).toEqual(true)
+})
+
+it('should has 4 NODES div', () => {
+  expect(app.find('div').length).toEqual(4)
+})
+
+
+it('should has a props', () => {
+  const app = mount(<Test name="first props")
+  expect(app.prop('name')).toEqual('first props')
+  expect(app.props().name).toEqual('first props')
+})
+
+it('should has a nested component', () => {
+  expect(app.contains(<App name='mattia' />)).toEqual(true);
+  expect(app.find(App).props().name).toBe('mattia')
+})
+
+it('should has 2 children', () => {
+  expect(app.children().length).toBe(4)
+})
+
+it('should update the App props if change the state.name', () => {
+  app.setState({name: 'Assogna'})
+  expect(app.find(App).props().name).toEqual('Assogna')
+})
+
+it('should SIMULATE an event whit shallow', () => {
+  expect(app.state().name).toBe('mattia');
+  app.find('a').simulate('click');
+  expect(app.state().name).toBe('Mau');
+})
+
+it('test text and type', () => {
+  expect(app.type()).toBe('div');
+  expect(app.find('div').at(2).text()).toBe('Assogna')
+})
+}}}

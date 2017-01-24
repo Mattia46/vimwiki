@@ -22,7 +22,7 @@ class Parent extends React.Component {
   //render(){
     //console.log('main', this.props.children)
     //let items = this.props.children.map(child => child)
-    //console.log('childre', items) 
+    //console.log('childre', items)
     //return null
   //}
   //render(){
@@ -83,7 +83,8 @@ class Parent extends React.Component {
   render(){
     console.log('childrem', this.props.children)
     let fn = child =>
-      React.cloneElement(child, {
+      React.cloneElement(child, { // Devo usare Clone perche se uso React.Children (sotto) posso solo leggere i children
+      // e non scrivere. Di conseguenza, clonandolo mi permette di scrivere oltre che leggere
         onClick:this.change.bind(this, child.props.value) // oppure posso passare come arg child.props.children (quindi il contenuto tra i <button>)
       });
     let child = React.Children.map(this.props.children, fn)

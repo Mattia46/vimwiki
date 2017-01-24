@@ -16,8 +16,8 @@
 * [[Toast]]
 
 == ReactJS ==
-* [[Tips ]]
-* [[Setup]]
+* [[ Tips ]]
+* [[ Setup ]]
 * [[setState]]
 * [[Nested data: props.children]]
 * [[Validate]]
@@ -28,6 +28,10 @@
 * [[Map Filter Fetch]]
 * [[Children]]
 * [[Router]]
+
+== React Testing ==
+* [[function]]
+* [[Shallow]]
 
 == Immutable ==
 * [[Modifiy Immutable]]
