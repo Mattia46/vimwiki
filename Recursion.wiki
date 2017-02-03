@@ -1,0 +1,82 @@
+Good way in ES6 and as a pure function to handle a recursion
+{{{Javascript
+var input  = ["build"];
+
+var config = {
+    "build":   ["js", "css", "version-rev"],
+    "js":      ["lint", "uglify", "build"],
+    "css":     ["sass", "css-min"]
+};
+
+var tasks = getTasks(config, input);
+
+function getTasks(config, input, initial) {
+    return input.reduce((prev, next) => {
+        if (config[next]) {
+            return getTasks(config, config[next], prev);
+        } else {
+            return prev.concat(next);
+        }
+    }, initial);
+}
+
+console.log(tasks);
+}}}
+
+Advance to handle the infinite loop.
+Added the parent array to store the key already evaluate. It's like history log
+{{{Javascript
+function getTasks(config, input, initial, parents) {
+    initial = initial || [];
+    parents = parents || [];
+    return input.reduce((prev, next) => {
+        if (parents.indexOf(next) > -1) {
+            // log
+            return prev;
+        }
+        if (config[next]) {
+            return getTasks(config, config[next], prev, parents.concat(next));
+        } else {
+            return prev.concat(next);
+        }
+    }, initial);
+}
+}}}
+
+Bad way to handle it
+{{{Javascript
+var input  = ["dist"];
+
+var config = {
+    "dist":    ["build", "deploy"],
+    "build":   ["js", "css", "version-rev"],
+    "js":      ["lint", "uglify"],
+    "css":     ["sass", "css-min"]
+};
+
+var tasks = [];
+
+input.forEach(task => {
+    if (config[task]) {
+        config[task].forEach(task => {
+            if (config[task]) {
+                config[task].forEach(task => {
+                    if (config[task]) {
+                        config[task].forEach(task => {
+                            tasks.push(task);
+                        })
+                    } else {
+                        tasks.push(task);
+                    }
+                })
+            } else {
+                tasks.push(task);
+            }
+        })
+    } else {
+        tasks.push(task);
+    }
+})
+
+console.log(tasks);
+}}}

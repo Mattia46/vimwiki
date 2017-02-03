@@ -14,6 +14,7 @@
 * [[Switch]]
 * [[Service & Factory]]
 * [[Toast]]
+* [[Recursion]]
 
 == ReactJS ==
 * [[ Tips ]]
@@ -40,6 +41,10 @@
 * [[Reducer, dispatch, subscribe]]
 * [[Concatenate]]
 * [[Object.assign]]
+
+== Terminal ==
+* [[Grep]]
+* [[Find]]
 
 == Django ==
 * [[new app]]

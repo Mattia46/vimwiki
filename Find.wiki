@@ -1,0 +1,9 @@
+{{{
+$ find ./location -name "*spec.js"
+}}}
+
+Find with XARGS
+This allows me to grep specific words within the find results
+{{{Bash
+find src -name "*test.js" | xargs grep "should"
+}}}

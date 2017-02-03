@@ -1,0 +1,26 @@
+grep cosa-cercare dove
+Es:
+{{{Bash
+$ grep version package.json
+  "version": "0.1.0",
+
+Recursively
+$ grep -r react ./folder
+$ grep -r "#" *.md
+}}}
+You can use the same syntacs with git at the beginnin.
+Using git avoid the search through the .gitignore folders
+{{{
+$ git grep -r react .
+}}}
+
+To SHOW the LINE NUMBER 
+{{{
+$ grep -n react ./folder
+$ grep -A 2 --color react ./folder Aggiunge due linee oltre quella richiesta
+$ grep -B 2 --color react ./folder Aggiunge due linee prima e dopo quella richiesta
+  }}}
+All together
+{{{
+$ grep -n -r -B 3 --color react ./folder
+}}}
