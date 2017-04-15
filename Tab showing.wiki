@@ -1,0 +1,91 @@
+{{{Javascript
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <div class="magic-tabs">
+            <h1>Magical No-JS Tabs</h1>
+            <div class="tab tab-a">
+                <input id="a" type="radio" name="filter-options" checked="checked"/>
+                <label for="a">A</label>
+                <div class="content">
+                    <p>Bacon ipsum dolor amet shoulder salami biltong tail short loin fatback chuck pork pig ham hock tenderloin cupim. T-bone strip steak turkey rump. Drumstick picanha jerky beef tenderloin pork meatloaf swine tongue pastrami chicken jowl. Fatback tri-tip boudin beef, chicken pork chop ball tip jowl cupim landjaeger tail bacon. </p>
+                    <p>Turkey shankle chuck, sirloin strip steak andouille boudin porchetta. Chicken capicola pork drumstick leberkas turkey. Ball tip strip steak pastrami short loin.</p>
+                </div>
+            </div>
+            <div class="tab tab-b">
+                <input id="b" type="radio" name="filter-options"/>
+                <label for="b">B</label>
+                <div class="content"><img src="http://i.imgur.com/dP1saHM.gif" alt="duck gif"/></div>
+            </div>
+            <div class="tab tab-c">
+                <input id="c" type="radio" name="filter-options"/>
+                <label for="c">C</label>
+                <div class="content">
+                    <p class="big-text">Tab C</p>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>
+}}}
+
+{{{Css
+
+body {
+    font-family: helvetica, sans-serif;
+}
+
+.magic-tabs {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+/*Allinea a sinistra i content*/
+.tab .content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    display: none;
+}
+
+/*Nasconde i button radio*/
+input[type='radio']{
+    display: none;
+}
+
+/*Mostra il contenuto una volta selezionato*/
+input:checked ~ .content {
+    display: block;
+}
+
+h1 {
+    margin: 0 15px 0 0;
+    font-size: 30px;
+    line-height: 22px;
+}
+
+/*Se volessi fare i pulsanti flex*/
+/*.tab {*/
+    /*flex: 1;*/
+/*}*/
+
+.tab label {
+    padding: 15px;
+    display: block;
+    background-color: #e0e0e0;
+    border: 1px solid #dadada;
+    box-sizing: border-box;
+    text-align: center;
+    margin: 20px;
+}
+
+}}}

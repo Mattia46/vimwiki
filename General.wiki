@@ -1,0 +1,45 @@
+git diff --stat
+git diff --cached (working dir and staging area)
+git diff HEAD (all changes - working and staged)
+git diff origin/master (diff between my local and master branch)
+
+STASH ( stage temporary files in the cache in order to use later )
+```
+$ git add .
+$ git stash
+```
+Change branch to es fix bug in other branch
+Going back to the stashed branch
+$ git stash apply
+
+GIT LOG ARGUMENTS:
+git log --oneline
+git log --graph
+git log -p (Show changes per commit)
+git log --stat (number of changes)
+git log --after="yesterday"
+git log --before="yesterday"
+git log --author=" you can use RegEx in here"
+git log --grep="message in the commit"
+git log -p -S"" (search a string)
+git log -p -GwordToSearch (G runs a Regex)
+  -i (ignore lower or capital flag)
+git log --no-merges (doesn't show merge commit)
+git log master..featureBranch (show when featureBranch has been branchout from master)
+git log fileName.txt
+git log -i -p fileName (tells us who changes the specific file. When can add the author name and how many commits display)
+
+GIT DIFF
+git diff --stat (tells me the specific line per file who has been changed)
+git diff --cached (shows changes between staging area and previous commit)
+git diff HEAD (shows every change between staging/not staged and commit)
+git diff branchToCompare
+git diff branchToCompare fileName
+
+GIT BLAME (show what and who changed something)
+git blame fileName
+
+GIT TAB
+git tag v2.0.0
+        Major, Minor, Patch
+

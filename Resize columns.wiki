@@ -1,0 +1,8 @@
+{{{Javascript
+className {
+    columns: 4 150px; //max 4 column. Each one need to be min-width of 150px
+    column-gap: 3rem;
+    column-rule: 1px dashed #ccc;
+    column-fill: auto;
+}
+}}}

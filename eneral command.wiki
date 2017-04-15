@@ -1,0 +1,11 @@
+/\v\w+ANY-LETTER
+:%s==CON-COSA-SOSTITUIRE=g
+
+I == tengono le reference cercate prima invece di crecarle
+
+Ctrl+v { block select }
+
+shift + * { select the current word }
+shift + # { select the current word backwards }
+
+" + char + y { copy and assing to char register }

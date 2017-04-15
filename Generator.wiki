@@ -1,0 +1,94 @@
+The generator makes a function Async
+The return has a value (the yield value) and a done boolean that become true only at the end of the yields
+{{{ Javascript
+    function* createGenerator () {
+        console.log('first');
+        const word = yield
+        console.log(word);
+    }
+
+    const hello = createGenerator()
+
+    hello.next();
+    hello.next('word passed');
+  }}}
+
+Chatching the error
+{{{Javascript
+    function* newGen(){
+        try {
+            const word = yield
+            console.log(`hello ${word}`)
+        } catch (err) {
+            console.log('Error', err)
+        }
+    }
+
+    const hello = newGen()
+        hello.next()
+        hello.throw('something went wrong')
+  }}}
+
+Iterate over the generator
+{{{Javascript
+
+    function* otherGen () {
+        yield 3
+        yield 4
+    }
+    function* generator () {
+        yield 1
+        yield 2
+        yield* otherGen();
+        yield 5
+    }
+
+    const counter = generator()
+        for (let i of counter) {
+            console.log(i)
+        }
+  }}}
+
+ASYNC
+{{{Javascript
+
+    const url = 'http://'
+    const fetch = require('node-fetch')
+
+    function* createFecther () {
+        const response = yield fetch(url)
+        const quote = yield response.json()
+        return quote
+    }
+
+//OPTIONS:
+// first an long
+    const quoteFetcher = createFetcher()
+      quoteFetcher.next().value
+       .then(res => quoteFetcher.next(res).value)
+       .then(res => quoteFetcher.next(res).value)
+       .then(quote => console.log(quote))
+       .catch(err => console.log(err))
+
+// Second
+    const corutine = (gen) => {
+        const generator = gen()
+
+        const handle = (result) => {
+            if(result.done) return
+            Promise.resolve(result.value)
+            return Promise.resolve(result.value)
+                .then(res => handle(generator.next(res)))
+        }
+    }
+
+    const quoteFetcher = coroutine(createFetcher)
+    quoteFetcher.then(quote => console.log(quote))
+
+// Third with npm i co
+// co dependency replace the all corutine fn in the second option
+
+    const quoteFetcher = co(createFercher)
+    quoteFetcher.then(quote => console.log(quote))
+  }}}
+

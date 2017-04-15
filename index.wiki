@@ -16,6 +16,20 @@
 * [[Toast]]
 * [[Recursion]]
 
+== ES6 ==
+* [[Generator]]
+
+== Css ==
+* [[Tab showing]]
+* [[Resize columns]]
+* [[Flex grid]]
+
+== Git ==
+* [[General]]
+
+== Vim ==
+* [[eneral command]]
+
 == ReactJS ==
 * [[ Tips ]]
 * [[ Setup ]]
