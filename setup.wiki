@@ -1,0 +1,52 @@
+1) Create VIRTUALENV with Python3
+
+In the env:
+```
+pip install django
+```
+
+2) Create Python-Djangp project
+
+
+3) Download:
+https://dev.mysql.com/downloads/mysql/ The mysql server
+https://pypi.python.org/pypi/mysqlclient (the tar.gz) => click twice then from the terminal in the dir:
+```
+python setup.py build
+python setup.py install
+```
+
+4) INSTALL:
+```
+brew install mysql
+```
+
+5) Create DB with SEQUEL PRO
+From 'New Favorite' (don't change it)
+
+Host: 127.0.0.1
+Username: root
+Password: ''
+
+Then:
+Database/Add Database
+
+6) MySqlBench:
+Create new connection with the data above
+
+7) Link DB to Django
+In settings/DATABASE
+   'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'nero_app',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': 3306,
+    }
+
+8) create a super user to access /admin:
+python manage.py createsuperuser
+
+
+

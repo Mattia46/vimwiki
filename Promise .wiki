@@ -1,0 +1,25 @@
+{{{Javascript
+    app.controller("AppCtrl", function($q) {
+        var main = this;
+        var defer = $q.defer();
+
+        defer.promise
+        .then(function(weapon) {
+            alert("You can have my " + weapon)
+            return "bow" // bow is the weapon/param for the next then
+        })
+        .then(function(weapon) {
+            alert("And my " + weapon)
+            return "axe" // axe is the weapon/param for the next then
+        })
+        .then(function(weapon) {
+            alert("And my " + weapon)
+        });
+
+        defer.resolve("sword"); // sword is the param for the first then
+
+        main.model = {
+            message: "This is my app!!!"
+        }
+    });
+}}}

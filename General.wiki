@@ -43,3 +43,5 @@ GIT TAB
 git tag v2.0.0
         Major, Minor, Patch
 
+REMOVE UNSTAGED FILES
+git clean -f -d

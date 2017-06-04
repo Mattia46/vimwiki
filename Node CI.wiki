@@ -1,0 +1,7 @@
+In the Node shell we can save the session that we are working on
+{{{Javascript
+.save FileName.js
+.exit
+.load FileName.js
+}}}
+

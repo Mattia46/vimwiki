@@ -15,6 +15,7 @@
 * [[Service & Factory]]
 * [[Toast]]
 * [[Recursion]]
+* [[Promise $q]]
 
 == ES6 ==
 * [[Generator]]
@@ -61,6 +62,7 @@
 * [[Find]]
 
 == Django ==
+* [[setup]]
 * [[new app]]
 * [[orderBy]]
 * [[OR]]
@@ -73,6 +75,9 @@
 * [[loop with index]]
 * [[celery - async and sheduled call - signal]]
 * [[celery setting]]
+
+== Node ==
+* [[Node CI]]
 
 == Natoora Conf ==
 * [[ws dev-qe server terminal]]
