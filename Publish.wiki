@@ -1,0 +1,4 @@
+npm adduser // create user
+npm publish // publish your repo
+npm version patch // add a new patch version
+npm unpublish module-name // use --force if you have many version and you want to remove all

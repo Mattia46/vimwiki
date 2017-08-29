@@ -1,0 +1,26 @@
+Pass dependencies in a function without type in all
+{{{Javascript
+    // store-document.js
+    function storeDocument (userDB, userID, folderDB, fileStream) {
+        return Promise.all({
+                usedDB.findOne(userID),
+                folderDB.findOne(fileStream)
+                })
+    }
+    export default function storeDocumentFactory (userDB, userID, folderDB, fileStream) {
+        return storeDocument.bind(null, userDB, userID, filterDB, fileStream)
+    }
+
+    // view.js
+    export default function View(storeDocument) {
+        storeDocument(123, 'ciao', myFile, test);
+    }
+
+    // main.js
+    import storeDocumentFactory from './store-document.js';
+    import { userDB, userId } from './db';
+    import { folderDB, fileStream } from './file';
+
+    let storeDocument = storeDocumentFactory(userDB, userID, folderDB, fileStream);
+    view(storeDocument);
+  }}}

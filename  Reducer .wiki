@@ -1,0 +1,162 @@
+Reduce is faster than chaining filter + map and gives back the same result:
+{{{Javascript
+// console.time('bigData');
+var filterMappedBigData = bigData.filter(function(value) {
+  return value % 2 === 0;
+}).map(function(value) {
+  return value * 2;
+});
+// console.timeEnd('bigData');
+
+// console.time('bigDataReduce');
+var reducedBigData = bigData.reduce(function(acc, value) {
+  if (value % 2 === 0) {
+    acc.push(value * 2);
+  }
+  return acc;
+}, []);
+// console.timeEnd('bigDataReduce');
+}}}
+
+Additional params:
+{{{Javascript
+function reducer(accumulator, value, index, array) {
+  var intermediaryValue = accumulator + value;
+
+  if (index === array.length - 1) {
+    return intermediaryValue / array.length;
+  }
+
+  return intermediaryValue;
+}
+
+var data = [1, 2, 3, 3, 4, 5, 3, 1];
+var mean = data.reduce(reducer, 0);
+
+console.log(mean);}}}
+}}}
+
+Create a Pipeline of function (compose a bunch of function is a specific order):
+{{{Javascript
+function increment(input) { return input + 1;}
+function decrement(input) { return input - 1; }
+function double(input) { return input * 2; }
+function halve(input) { return input / 2; }
+
+var initial_value = 1;
+
+var pipeline = [
+  increment,
+  double,
+  halve
+];
+
+var final_value = pipeline.reduce(function(acc, fn) {
+  return fn(acc);
+}, initial_value);
+
+//reduceRight reads and process the pipeline the reverse way:
+var reversed = pipeline.reduceRight(function(acc, fn) {
+  return fn(acc);
+}, initial_value)
+}}}
+
+Flatten and map an Array (output every cast except doppioni)
+{{{Javascript
+var input = [
+  {
+    title: "The Dark Knight",
+    year: 2008,
+    cast: [
+      "Christian Bale",
+      "Heath Ledger",
+      "Aaron Eckhart",
+      "Michael Caine",
+      "Maggie Gyllenhal",
+      "Gary Oldman",
+      "Morgan Freeman"
+    ]
+  },
+  {
+    title: "The Dark Knight Rises",
+    year: 2012,
+    cast: [
+      "Christian Bale",
+      "Gary Oldman",
+      "Tom Hardy",
+      "Joseph Gordon-Levitt",
+      "Anne Hathaway",
+      "Marion Cotillard",
+      "Morgan Freeman",
+      "Michael Caine"
+    ]
+  }
+];
+
+var stars = input.reduce(function(acc, value) {
+  value.cast.forEach(function(star) {
+    if (acc.indexOf(star) === -1) {
+      acc.push(star);
+    }
+  });
+  return acc;
+}, []);
+}}}
+
+Safely inspect nested objects with reduce:
+{{{Javascript
+var luke = {
+  name: "luke skywalker",
+  jedi: true,
+  parents: {
+    father: {
+      jedi: true
+    },
+    mother: {
+      jedi: false
+    }
+  }
+}
+
+var han = {
+  name: "han solo",
+  jedi: false,
+  parents: {
+    father: {
+      jedi: false
+    },
+    mother: {
+      jedi: false
+    }
+  }
+}
+
+var anakin = {
+  name: "anakin skywalker",
+  jedi: true,
+  parents: {
+    mother: {
+      jedi: false
+    }
+  }
+}
+
+var characters = [luke, han, anakin];
+
+// This one will safely check overy available property
+function fatherWasJedi(character) {
+  var path = "parents.father.jedi";
+  return path.split(".").reduce(function(obj, field) {
+    if (obj) {
+      return obj[field];
+    }
+
+    return false;
+  }, character);
+}
+
+//This one will fail when won t find parents.father
+characters.forEach(function(character) {
+  console.log(character.name + "'s father was a jedi:", fatherWasJedi(character));
+});
+}}}
