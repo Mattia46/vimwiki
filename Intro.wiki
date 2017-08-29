@@ -1,0 +1,8 @@
+brew update
+brew install mongodb
+
+sudo mkdir -p /data/db // default folder where mongo creates the DB
+sudo chown $USER /data/db // gives permission to write in that folder
+
+mongod // starts the server
+
