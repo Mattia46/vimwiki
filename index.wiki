@@ -16,6 +16,7 @@
 * [[Toast]]
 * [[Recursion]]
 * [[Promise $q]]
+* [[Read only value]]
 
 == ES6 ==
 * [[Generator]]

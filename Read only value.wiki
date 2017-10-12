@@ -1,0 +1,17 @@
+{{{Javascript
+// This defineProperty allows me to define only the property called "name" = 'this var is read onlt' as a static, not other strinct';
+var obj = {};
+
+Object.defineProperty(obj, 'name', {
+    enumerable: false,
+    configurable: false,
+    writable: false,
+    value: 'this var is read only'
+});
+
+obj.name = 'new String'; //
+console.log(obj.name) => 'this var is read only';
+
+obj.lastname = 'mattia';
+console.log(obj.lastname) => 'mattia';
+}}};
