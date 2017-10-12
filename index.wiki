@@ -1,4 +1,4 @@
-= [[Programming]] =
+j [[Programming]] =
 == Javascript ==
 * [[Autocomplete]]
 * [[ng-checkbox]]
@@ -17,6 +17,8 @@
 * [[Recursion]]
 * [[Promise $q]]
 * [[Read only value]]
+* [[ Reducer ]]
+* [[Inversion Control]]
 
 == ES6 ==
 * [[Generator]]
@@ -45,6 +47,16 @@
 * [[Map Filter Fetch]]
 * [[Children]]
 * [[Router]]
+
+== MongoDB ==
+* [[Intro]]
+
+== Npm / Node ==
+* [[Publish]]
+* [[Node garbage collection]]
+
+== Angular ==
+
 
 == React Testing ==
 * [[function]]

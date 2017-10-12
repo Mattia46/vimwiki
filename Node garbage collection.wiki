@@ -1,0 +1,13 @@
+in the server.js file, in order to take snapshot you have to import
+var heapdump = require('heapdump');
+
+.then
+    $ node --trace_gc server-name.js
+
+.then
+    $ ps | grep 'serverName.js'
+    $ kill -USR2 (the number refer to the index on the process in the list diplayed)
+
+.then
+    in Chrome, profiles, load the heapdump image
+    change to "comparison"
