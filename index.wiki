@@ -1,4 +1,4 @@
-j [[Programming]] =
+[[j]] [[Programming]] =
 == Javascript ==
 * [[Autocomplete]]
 * [[ng-checkbox]]
