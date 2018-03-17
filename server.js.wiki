@@ -1,0 +1,16 @@
+{{{Javascript
+const http = require('http');
+const PORT = 80 //This port HAS to be the Dockerfile port exposed!!!
+var handler = function (req, res) {
+  res.write(`Hello mattia ${process.platform}`);
+  res.end('Hello Mattia end');
+}
+
+var server = http.createServer(handler);
+
+server.listen(PORT, function() {
+    console.log(`Here I am ${process.env.NODE_ENV}`);
+})
+}}}
+* Important:
+    * Do not insert the hostname (like: localhost);

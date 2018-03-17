@@ -1,0 +1,26 @@
+1) Create/download the first image
+const GENERAL_IMAGE_NAME = `$ docker run -it --name IMAGE_NAME ubuntu`
+
+2) Create the personalised Image based on Dockerfile (Run in within the root folder with files)
+const MY_IMAGE = `$ docker build -t GENERAL_IMAGE_NAME .`
+
+
+3) Create a Container base of the Personalised Image
+
+const PORT = The port where I want to serve docker server on the browser
+const PORT_DOCKERFILE = The port specified in the server
+const MY_CONTAINER_IMAGE_NAME = The name of my container
+`$ docker run -it -p PORT:PORT_DOCKER--rm --name MY_CONTAINER_IMAGE_NAME MY_IMAGE`
+
+4) To avoid recreating the container every time you change anything just bind your folder with the server folder
+
+const MY_FOLDER = `~/Development/my-project/.`
+const SERVER_FOLDER = `/usr/src/app`
+`$ docker run -it -p 3000:80 -v MY_FOLDER:SERVER_FOLDER --name MY_CONTAINER_NAME MY_IMAGE`
+
+5) Useful CLI
+`$ docker ps (list of container running)`
+`$ docker start CONTAINER_IMAGE_NAME`
+`$ docker attach CONTAINER_IMAGE_NAME`
+`$ docker rmi -f CONTAINER_IMAGE_NAME`
+`$ docker images`
