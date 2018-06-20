@@ -1,0 +1,4 @@
+The "--disable-host-check && --host 0.0.0.0" allows to run the instance from a different device
+{{{Javascript
+"start": "webpack-dev-server --config scripts/webpack/webpack.dev.js --disable-host-check --host 0.0.0.0",
+}}}
