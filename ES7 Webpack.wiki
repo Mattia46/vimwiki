@@ -1,0 +1,19 @@
+ES7 in webpack/babel needs the **Preset-stage-2**
+
+{{{javascript
+
+npm install --save babel-preset-stage-2
+
+
+module: {
+  loaders: [
+    {
+      test: /\.jsx?$/,
+      exclude: /node_modules/,
+      loader: 'babel-loader',
+      query: {
+        presets:[ 'es2015', 'react', 'stage-2' ]
+      }
+    }
+  ]
+}

@@ -27,6 +27,7 @@
 
 == ES6 ==
 * [[Generator]]
+* [[ES7 Webpack]]
 
 == Css ==
 * [[Tab showing]]
