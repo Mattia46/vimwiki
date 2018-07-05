@@ -34,7 +34,7 @@
     mysql -u root -p
     use mysql
     select user, host, privileges from myqsl.user;
-    drop user 'root'@'localhost';
+    drop user 'root'@'localhost'; // or just create a new user 'mattia'@'localhost' (next command)
     create user 'root'@'localhost' identified by ''; // NOT ADD password
     grant all privileges on *.* to 'root'@'localhost' with grant option;
     flush privileges;
