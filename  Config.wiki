@@ -44,3 +44,7 @@
     Manually grant privileges to dir or files:
     sudo chmod 777 -R /dir
     sudo chmod 777 fileName
+
+### Once set, pip dependencies
+    sudo apt-get install libmysqlclient-dev
+    sudo apt-get install python3-dev
