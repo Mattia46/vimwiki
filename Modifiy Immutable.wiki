@@ -1,4 +1,4 @@
-{{{Javascript
+{{{javascript
 mocha.setup('bdd');
 const expect = chai.expect;
 

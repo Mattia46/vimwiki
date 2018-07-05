@@ -1,0 +1,46 @@
+###INSTALL:
+    sudo apt-get update
+    sudo apt-get install mysql-server
+    mysql_secure_installation
+
+###To test if works:
+    service mysql status
+
+###To OPERATE it:
+    service mysql start;
+    service mysql stop;
+    service mysql restart;
+
+###Troubleshoting:
+
+ - Check if server running:
+        sudo service mysql status
+        ps aux | grep mysql
+
+ - Check which port:
+        netstat -tln
+
+ - Check if you have rights:
+        mysql -u root -p
+
+###To FIX IT:
+
+1) To test if you have the privileges:
+    myqsql -u root -p
+    yourPassword inster in the config
+
+2) If not:
+    sudo -i
+    mysql -u root -p
+    use mysql
+    select user, host, privileges from myqsl.user;
+    drop user 'root'@'localhost';
+    create user 'root'@'localhost' identified by ''; // NOT ADD password
+    grant all privileges on *.* to 'root'@'localhost' with grant option;
+    flush privileges;
+    exit
+
+3) Operation not permitted:
+    Manually grant privileges to dir or files:
+    sudo chmod 777 -R /dir
+    sudo chmod 777 fileName

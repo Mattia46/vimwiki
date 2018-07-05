@@ -20,6 +20,9 @@
 * [[Inversion Control]]
 * [[Share Instance]]
 
+== Mysql ==
+*[[ Config]]
+
 == Docker ==
 * [[Init]]
 * [[server.js]]
@@ -95,7 +98,7 @@
 * [[celery - async and sheduled call - signal]]
 * [[celery setting]]
 
-== Node ==
+== [[Node]] ==
 * [[Node CI]]
 
 == Natoora Conf ==
