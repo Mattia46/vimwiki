@@ -3,5 +3,16 @@ In linux:
 Install vim-gtk NOT vim because doens't support "clipboard" (vim --version | grep clipboard)
 
 Tmux.conf:
-bind-key -T copy-mode-vi 'y' send -X copy-pipe-and-cancel "xclip -in -selection clipboard"
+1)
+bind-key -T copy-mode-vi 'y' send -X copy-pipe-and-cancel "xclip -in -selection clipboard" // Tmux
+bind-key -T copy-mode-vi 'y' send -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy" // Mac
+
+2)
+bind ] run "reattach-to-user-namespace pbpaste | tmux load-buffer - && tmux paste-buffer" // Mac
+#bind ] run "reattach-to-user-namespace pbpaste | tmux load-buffer - && tmux paste-buffer" // Tmux
+
+Vimrc:
+
+set clipboard=unnamedplus " Tmux
+set clipboard=unnamed " Mac
 
