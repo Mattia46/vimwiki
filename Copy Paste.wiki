@@ -1,0 +1,7 @@
+In linux:
+
+Install vim-gtk NOT vim because doens't support "clipboard" (vim --version | grep clipboard)
+
+Tmux.conf:
+bind-key -T copy-mode-vi 'y' send -X copy-pipe-and-cancel "xclip -in -selection clipboard"
+

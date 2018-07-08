@@ -48,3 +48,6 @@
 ### Once set, pip dependencies
     sudo apt-get install libmysqlclient-dev
     sudo apt-get install python3-dev
+
+### After installed dependencies
+    remember to create super user

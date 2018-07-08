@@ -42,6 +42,7 @@
 
 == Vim ==
 * [[eneral command]]
+* [[Copy Paste]]
 
 == ReactJS ==
 * [[ Tips ]]
