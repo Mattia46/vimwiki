@@ -19,6 +19,7 @@
 * [[ Reducer ]]
 * [[Inversion Control]]
 * [[Share Instance]]
+* [[Compose]]
 
 == Mysql ==
 *[[ Config]]

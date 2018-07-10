@@ -51,3 +51,6 @@
 
 ### After installed dependencies
     remember to create super user
+    use myNewDB
+
+db.collection('user').find({ name: 'mattia' });

@@ -1,0 +1,16 @@
+{{{javascript
+const scream = str => str.toUpperCase()
+const exclaim = str => `${str}!`
+const repeat = str => `${str} ${str}`
+
+const string = 'Egghead.io is awesome'
+
+Unreadable way to compose functions:
+const result2 = repeat(exclaim(scream(string)))
+
+const compose = (...fns) => x =>
+  fns.reduceRight((acc, fn) => fn(acc), x)
+
+const enhance = compose(repeat, exclaim, scream)
+
+console.log(enhance(string))
